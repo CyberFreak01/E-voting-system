@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Welcome to E-Voting System</h1>
+    <p>Cast your vote securely and easily</p>
+    <a href="{{ url_for('login') }}" class="btn">Login to Vote</a>
+</div>
+{% endblock %}

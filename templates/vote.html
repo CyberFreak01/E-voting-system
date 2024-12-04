@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="vote-container">
+    <h2>Cast Your Vote</h2>
+    <form method="POST">
+        <!-- CSRF Token -->
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        
+        {% for party in parties %}
+        <div class="party-option">
+            <input type="radio" name="party_id" value="{{ party.party_id }}" required>
+            <label>
+                <strong>{{ party.name }}</strong><br>
+                Candidate: {{ party.candidate_name }}<br>
+                {{ party.description }}
+            </label>
+        </div>
+        {% endfor %}
+        
+        <button type="submit" class="btn">Submit Vote</button>
+    </form>
+</div>
+{% endblock %}

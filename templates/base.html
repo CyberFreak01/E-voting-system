@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Voting System</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .container { text-align: center; }
+        .login-container, .vote-container, .results-container { background: #f4f4f4; padding: 20px; border-radius: 5px; }
+        .btn { display: inline-block; background: #333; color: #fff; padding: 10px 20px; text-decoration: none; border: none; cursor: pointer; }
+        .form-control { width: 100%; padding: 10px; margin: 10px 0; }
+        .party-option { margin: 10px 0; padding: 10px; background: #fff; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    </style>
+</head>
+<body>
+    <nav>
+        {% if current_user.is_authenticated %}
+        <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+        {% else %}
+        <a href="{{ url_for('login') }}" class="btn">Login</a>
+        {% endif %}
+    </nav>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    {% block content %}{% endblock %}
+</body>
+</html>
